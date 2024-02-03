@@ -1,17 +1,10 @@
 import styles from './image-gallery-item.module.css';
+import { Link } from 'react-router-dom';
 
-const ImageGalleryItem = ({ showModal, items }) => {
-  const elements = items.map(({ id, webformatURL, largeImageURL }) => (
-    <li
-      className={styles.item}
-      key={id}
-      onClick={() => showModal({ largeImageURL })}
-    >
-      <img
-        className={styles.ImageGalleryItemImage}
-        src={webformatURL}
-        alt="small view"
-      />
+const ImageGalleryItem = ({ items }) => {
+  const elements = items.map(({ id, title }) => (
+    <li className={styles.item} key={id}>
+      <Link to={`/posts/${id}`}>{title}</Link>
     </li>
   ));
 

@@ -2,10 +2,10 @@ import ImageGalleryItem from './ImageGalleryItem/ImageGalleryItem';
 
 import styles from './imagegallery.module.css';
 
-const ImageGallery = ({ showModal, items }) => {
+const ImageGallery = ({ items }) => {
   return (
     <ul className={styles.ImageGallery}>
-      <ImageGalleryItem showModal={showModal} items={items} />
+      <ImageGalleryItem items={items} />
     </ul>
   );
 };

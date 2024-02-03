@@ -28,7 +28,7 @@ export const searchPosts = (q, _page = 1) => {
   return instance.get('/search/movie', {
     params: {
       q,
-      _limit: 6,
+      // _limit: 10,
       _page,
     },
   });

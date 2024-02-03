@@ -1,8 +1,6 @@
 import { useEffect, useState } from 'react';
 
 import Button from '../Button/Button';
-import Modal from '../Modal/Modal';
-import Loader from '../Loader/Loader';
 import Searchbar from './Searchbar/Searchbar';
 import ImageGallery from './ImageGallery/ImageGallery';
 import { searchPosts } from '../../api/posts';
@@ -15,9 +13,7 @@ const ImagesSearch = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [page, setPage] = useState(1);
-  const [modalOpen, setModalOpen] = useState(false);
-  const [postDetails, setPostDetails] = useState({});
-  const [totalHits, setTotalHits] = useState(0);
+  const [totalResults, setTotalResults] = useState(0);
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -25,9 +21,9 @@ const ImagesSearch = () => {
         setLoading(true);
         const { data } = await searchPosts(search, page);
         setPosts(prevPosts =>
-          data?.hits?.length ? [...prevPosts, ...data.hits] : prevPosts
+          data?.results?.length ? [...prevPosts, ...data.results] : prevPosts
         );
-        setTotalHits(data.totalHits);
+        setTotalResults(data.total_results);
       } catch (error) {
         setError(error.message);
       } finally {
@@ -47,45 +43,23 @@ const ImagesSearch = () => {
 
   const loadMore = () => setPage(prevPage => prevPage + 1);
 
-  const showModal = ({ largeImageURL }) => {
-    setModalOpen(true);
-    setPostDetails({
-      largeImageURL,
-    });
-  };
-
-  const closeModal = () => {
-    setModalOpen(false);
-    setPostDetails({});
-  };
-
   const isPosts = Boolean(posts.length);
 
   return (
     <>
       <Searchbar onSubmit={handleSearch} />
       {error && <p className={styles.error}>{error}</p>}
-      {loading && <Loader />}
-      {isPosts && <ImageGallery showModal={showModal} items={posts} />}
+      {loading && <p>...Loading</p>}
+      {isPosts && <ImageGallery items={posts} />}
 
       {isPosts && (
         <div className={styles.loadMoreWrapper}>
-          {posts.length < totalHits && (
+          {posts.length < totalResults && (
             <Button onClick={loadMore} type="button">
               Load more
             </Button>
           )}
         </div>
-      )}
-
-      {modalOpen && (
-        <Modal close={closeModal}>
-          <img
-            className={styles.image}
-            src={postDetails.largeImageURL}
-            alt="big view"
-          />
-        </Modal>
       )}
     </>
   );
