@@ -1,10 +1,10 @@
 // import styles from './movies-page.module.css';
-import ImagesSearch from 'components/ImagesSearch/ImagesSearch';
+import Movies from '../../components/Movies/Movies';
 
 const MoviesPage = () => {
   return (
     <div>
-      <ImagesSearch />
+      <Movies />
     </div>
   );
 };

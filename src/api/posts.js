@@ -24,12 +24,10 @@ export const getReviewsById = id => {
   return instance.get(`/movie/${id}/reviews`);
 };
 
-export const searchPosts = (q, _page = 1) => {
+export const fetchSearchMovie = query => {
   return instance.get('/search/movie', {
     params: {
-      q,
-      // _limit: 10,
-      _page,
+      query,
     },
   });
 };

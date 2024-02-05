@@ -1,14 +1,15 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 import { getAllPosts } from '../../api/posts';
 
-import styles from './posts.module.css';
+import styles from './home.module.css';
 
-const Posts = () => {
+const Home = () => {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const location = useLocation();
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -29,7 +30,7 @@ const Posts = () => {
   const elements = posts.map(({ id, title, name }) => (
     <li key={id} className={styles.item}>
       {id && (
-        <Link to={`/posts/${id}`}>
+        <Link to={`/movies/${id}`} state={{ from: location }}>
           {title}
           {name}
         </Link>
@@ -46,4 +47,8 @@ const Posts = () => {
   );
 };
 
-export default Posts;
+export default Home;
+
+{
+  /* <Link to={`/posts/${id}`} state={{ from: location }}></Link> */
+}

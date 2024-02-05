@@ -1,12 +1,11 @@
-import Posts from '../../components/Posts/Posts';
-
 // import styles from './home-page.module.css';
+import Home from '../../components/Home/Home';
 
 const HomePage = () => {
   return (
     <div>
       <h1>Trending today</h1>
-      <Posts />
+      <Home />
     </div>
   );
 };

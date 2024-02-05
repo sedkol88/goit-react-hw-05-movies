@@ -11,13 +11,10 @@ const MainMenu = () => {
         </NavLink>
       </li>
       <li>
-        <NavLink className={styles.link} to="/posts-search">
+        <NavLink className={styles.link} to="/movies">
           Movies
         </NavLink>
       </li>
-      {/* <li>
-                <NavLink className={styles.link} to="/contacts">Contacts</NavLink>
-            </li> */}
     </ul>
   );
 };
