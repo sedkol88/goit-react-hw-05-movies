@@ -26,7 +26,7 @@ const Cast = () => {
     };
 
     fetchPost();
-  }, []);
+  }, [id]);
 
   const elements = casts.map(({ id, name, character, profile_path }) => (
     <li key={id} className={styles.item}>
@@ -34,7 +34,7 @@ const Cast = () => {
       <p>{character}</p>
       <img
         src={`https://image.tmdb.org/t/p/w500${profile_path}`}
-        alt="actor photo"
+        alt="actor"
         width="100"
       />
     </li>
