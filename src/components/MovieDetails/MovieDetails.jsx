@@ -36,7 +36,7 @@ const MovieDetails = () => {
     };
 
     fetchPost();
-  }, []);
+  }, [id]);
 
   const getReleaseYear = dateString => {
     return dateString ? new Date(dateString).getFullYear() : '';

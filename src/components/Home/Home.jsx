@@ -48,7 +48,3 @@ const Home = () => {
 };
 
 export default Home;
-
-{
-  /* <Link to={`/posts/${id}`} state={{ from: location }}></Link> */
-}

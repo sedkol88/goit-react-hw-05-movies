@@ -26,7 +26,7 @@ const Reviews = () => {
     };
 
     fetchPost();
-  }, []);
+  }, [id]);
 
   const elements = reviews.map(({ author, content }, index) => (
     <li key={index} className={styles.item}>
